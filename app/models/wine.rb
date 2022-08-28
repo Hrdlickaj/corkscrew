@@ -3,4 +3,6 @@ class Wine < ApplicationRecord
 
   has_many :joins
   has_many :tags, through: :joins
+
+  validates :user, uniqueness: true
 end
