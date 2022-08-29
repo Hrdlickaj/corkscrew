@@ -10,6 +10,7 @@ import '@fontsource/chilanka';
 
 const theme = extendTheme({
   colors: {
+    transparent: 'transparent',
     groovy: {
       pink: '#ffc1c4',
       red: '#ff5730',
@@ -33,7 +34,7 @@ const theme = extendTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ChakraProvider>
+  <ChakraProvider theme={theme}>
     <BrowserRouter>
       <React.StrictMode>
         <App />
