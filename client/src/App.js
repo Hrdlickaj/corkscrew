@@ -11,6 +11,7 @@ import EditProfilePage from './Pages/EditProfilePage';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [wines, setWines] = useState([]);
 
   useEffect(() => {
     fetch('/me').then((resp) => {
@@ -19,6 +20,11 @@ function App() {
       }
     });
   }, []);
+
+  function whenAddWine(newWine) {
+    const expandedWinesArray = [...wines, newWine];
+    setWines(expandedWinesArray);
+  }
 
   if (!user)
     return (
@@ -35,7 +41,10 @@ function App() {
       <NavigationBar user={user} setUser={setUser} />
       <Routes>
         <Route path='/my_wines' element={<WineListPage user={user} />} />
-        <Route path='/add_wine' element={<NewWinePage user={user} />} />
+        <Route
+          path='/new_wine'
+          element={<NewWinePage handleAddWine={whenAddWine} user={user} />}
+        />
         <Route path='/profile' element={<ProfilePage user={user} />} />
         <Route path='/edit_profile' element={<EditProfilePage user={user} />} />
       </Routes>
