@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import NavigationBar from './Components/NavigationBar';
 import LoginPage from './Pages/LoginPage';
 import SignupPage from './Pages/SignupPage';
 import WineListPage from './Pages/WineListPage';
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <div className='App'>
+      <NavigationBar user={user} setUser={setUser} />
       <Routes>
         <Route path='/my_wines' element={<WineListPage user={user} />} />
         <Route path='/add_wine' element={<NewWinePage user={user} />} />
