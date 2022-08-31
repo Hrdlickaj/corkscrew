@@ -6,6 +6,7 @@ import LoginPage from './Pages/LoginPage';
 import SignupPage from './Pages/SignupPage';
 import WineListPage from './Pages/WineListPage';
 import NewWinePage from './Pages/NewWinePage';
+import MapPage from './Pages/MapPage';
 import ProfilePage from './Pages/ProfilePage';
 import EditProfilePage from './Pages/EditProfilePage';
 
@@ -21,9 +22,44 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    fetch('http://localhost:4000/wines')
+      .then((r) => r.json())
+      .then((winesData) => {
+        setWines(winesData);
+      });
+  }, []);
+
   function whenAddWine(newWine) {
     const expandedWinesArray = [...wines, newWine];
     setWines(expandedWinesArray);
+  }
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const displayedWines = wines.filter((wine) => {
+    return (
+      wine.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      wine.grape.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      wine.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      wine.region.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+
+  function whenEditWine(updatedWine) {
+    const updatedWinesArray = wines.map((wine) => {
+      if (wine.id === updatedWine.id) {
+        return updatedWine;
+      } else {
+        return wine;
+      }
+    });
+    setWines(updatedWinesArray);
+  }
+
+  function whenDeleteWine(id) {
+    const reducedWinesArray = wines.filter((wine) => wine.id !== id);
+    setWines(reducedWinesArray);
   }
 
   if (!user)
@@ -40,11 +76,24 @@ function App() {
     <div className='App'>
       <NavigationBar user={user} setUser={setUser} />
       <Routes>
-        <Route path='/my_wines' element={<WineListPage user={user} />} />
+        <Route
+          path='/my_wines'
+          element={
+            <WineListPage
+              user={user}
+              wines={wines}
+              handleDeleteWine={whenDeleteWine}
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+              handleUpdateWine={whenEditWine}
+            />
+          }
+        />
         <Route
           path='/new_wine'
           element={<NewWinePage handleAddWine={whenAddWine} user={user} />}
         />
+        <Route path='/map' element={<MapPage />} />
         <Route path='/profile' element={<ProfilePage user={user} />} />
         <Route path='/edit_profile' element={<EditProfilePage user={user} />} />
       </Routes>
