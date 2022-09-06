@@ -22,7 +22,7 @@ function NavigationBar({ user, setUser }) {
         <HStack spacing={8} alignItems={'center'}>
           <Box>Corkscrew</Box>
           <HStack as={'nav'} spacing={4} display={{ base: 'flex', md: 'flex' }}>
-            <Link to='/wine_list'>My Wines</Link>
+            <Link to='/my_wines'>My Wines</Link>
           </HStack>
           <HStack as={'nav'} spacing={4} display={{ base: 'flex', md: 'flex' }}>
             <Link to='/new_wine'>Add a Wine</Link>

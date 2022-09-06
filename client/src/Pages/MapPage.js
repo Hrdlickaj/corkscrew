@@ -1,7 +1,8 @@
 import React from 'react';
+import WineMap from '../Components/WineMap';
 
-function MapPage() {
-  return <div>MapPage</div>;
+function MapPage({ wines }) {
+  return <WineMap wines={wines} />;
 }
 
 export default MapPage;

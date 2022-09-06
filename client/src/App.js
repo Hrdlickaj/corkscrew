@@ -93,7 +93,7 @@ function App() {
           path='/new_wine'
           element={<NewWinePage handleAddWine={whenAddWine} user={user} />}
         />
-        <Route path='/map' element={<MapPage />} />
+        <Route path='/map' element={<MapPage wines={wines} />} />
         <Route path='/profile' element={<ProfilePage user={user} />} />
         <Route
           path='/edit_profile'
