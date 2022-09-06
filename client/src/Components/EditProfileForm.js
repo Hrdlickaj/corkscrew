@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -94,4 +94,4 @@ function EditProfileForm({
   );
 }
 
-export default EditProfileForm;*/
+export default EditProfileForm;
