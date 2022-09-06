@@ -30,8 +30,6 @@ function App() {
       });
   }, []);
 
-  console.log(wines);
-
   function whenAddWine(newWine) {
     const expandedWinesArray = [...wines, newWine];
     setWines(expandedWinesArray);
@@ -83,7 +81,7 @@ function App() {
           element={
             <WineListPage
               user={user}
-              wines={wines}
+              wines={displayedWines}
               handleDeleteWine={whenDeleteWine}
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
