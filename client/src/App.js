@@ -30,6 +30,8 @@ function App() {
       });
   }, []);
 
+  console.log(wines);
+
   function whenAddWine(newWine) {
     const expandedWinesArray = [...wines, newWine];
     setWines(expandedWinesArray);
@@ -95,7 +97,10 @@ function App() {
         />
         <Route path='/map' element={<MapPage />} />
         <Route path='/profile' element={<ProfilePage user={user} />} />
-        <Route path='/edit_profile' element={<EditProfilePage user={user} />} />
+        <Route
+          path='/edit_profile'
+          element={<EditProfilePage user={user} setUser={setUser} />}
+        />
       </Routes>
     </div>
   );

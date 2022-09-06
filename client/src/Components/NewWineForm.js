@@ -79,6 +79,9 @@ function NewWineForm({
     })
       .then((r) => r.json())
       .then((newWine) => {
+        onAddWine(newWine);
+        handleTastingNoteState('');
+        handleMemoryNoteState('');
         setFormData({
           name: '',
           vintage: '',
@@ -88,9 +91,6 @@ function NewWineForm({
           rating: '',
           image: '',
         });
-        handleTastingNoteState('');
-        handleMemoryNoteState('');
-        onAddWine(newWine);
       })
       .then(navigate('/my_wines'));
   }

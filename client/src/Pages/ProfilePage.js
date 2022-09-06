@@ -3,7 +3,7 @@ import { Heading, Box, Center, Text, Button } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 function ProfilePage({ user }) {
-  const { username, email, bio } = user;
+  const { username, email, bio, id } = user;
 
   return (
     <Center py={10}>
